@@ -1,0 +1,14 @@
+<a
+  [href]="item.ItemUrl"
+  target="_blank"
+  *ngIf="item"
+  class="list-group-item list-group-item-action flex-column align-items-start"
+>
+  <div class="d-flex w-100 justify-content-between">
+    <img [src]="item.ImageUrl" />
+    <div class="d-flex flex-column text-right justify-content-center">
+      <h5 class="mb-1 text-uppercase">{{ item.Name }}</h5>
+      <p class="font-weight-lighter">{{ item.Description }}</p>
+    </div>
+  </div>
+</a>

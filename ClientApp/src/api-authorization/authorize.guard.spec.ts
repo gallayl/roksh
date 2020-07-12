@@ -1,15 +1,19 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { AuthorizeGuard } from './authorize.guard';
+import { AuthorizeGuard } from "./authorize.guard";
+import { Router } from "@angular/router";
 
-describe('AuthorizeGuard', () => {
+describe("AuthorizeGuard", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthorizeGuard]
+      providers: [
+        { provide: Router, useValue: { navigate: () => ({}) } },
+        AuthorizeGuard,
+      ],
     });
   });
 
-  it('should ...', inject([AuthorizeGuard], (guard: AuthorizeGuard) => {
+  it("should ...", inject([AuthorizeGuard], (guard: AuthorizeGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

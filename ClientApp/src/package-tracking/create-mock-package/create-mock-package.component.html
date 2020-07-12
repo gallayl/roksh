@@ -1,0 +1,19 @@
+<h1 id="tableLabel">Create a Mock Package</h1>
+
+<p>This function will help you to create a mock package</p>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+    <div class="form-group">
+        <label for="identifier">Identifier</label>
+        <input [(ngModel)]="model.Identifier" name="Identifier" required placeholder="e.g. ASDF1234" class="form-control" type="text" id="identifier" data-val="true" data-val-pattern="The code should contain 4 alphanumeric and 4 numeric characters" pattern="^([a-zA-Z]{4}[0-9]{4})" />
+    </div>
+    <div class="form-group">
+        <label for="identifier">State</label>
+        <select class="form-control" required [(ngModel)]="model.StateId" name="StateId">
+            <option *ngFor="let state of deliveryStates | async;" [value]="state.Id">{{state.Code}} - {{state.Description_EN}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" >Create</button>
+    </div>
+</form>

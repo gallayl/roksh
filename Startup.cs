@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using roksh.Data;
@@ -11,6 +8,10 @@ using roksh.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Builder;
+using Microsoft.OData.Edm;
+using roksh.Services;
 
 namespace roksh
 {
@@ -27,8 +28,9 @@ namespace roksh
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")
+                    ));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -45,6 +47,8 @@ namespace roksh
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddOData();
+            services.AddTransient<IDataFetcher, MockDataFetcher>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +83,9 @@ namespace roksh
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
+                endpoints.MapODataRoute("odata", "odata", GetEdmModel());
             });
 
             app.UseSpa(spa =>
@@ -95,5 +101,17 @@ namespace roksh
                 }
             });
         }
+
+        private IEdmModel GetEdmModel()
+        {
+            var builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Item>("Items");
+            builder.EntitySet<DeliveryState>("DeliveryStates");
+            builder.EntitySet<Package>("Packages").EntityType.Select().OrderBy().Filter().Expand().Count().Page();
+
+            return builder.GetEdmModel();
+        }
+
     }
+
 }
