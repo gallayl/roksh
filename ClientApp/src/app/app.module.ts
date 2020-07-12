@@ -12,11 +12,7 @@ import { AuthorizeInterceptor } from "src/api-authorization/authorize.intercepto
 import { PackageTrackingModule } from "src/package-tracking/package-tracking.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-  ],
+  declarations: [AppComponent, NavMenuComponent, HomeComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,

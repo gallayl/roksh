@@ -1,21 +1,46 @@
-<h1 id="tableLabel">Rackage '{{packageId}}' details</h1>
-<div *ngIf="(packageDetails | async) as package; else noPackage">
-    <strong>State: </strong><delivery-state [state]="package.State"></delivery-state>
-    <div class="list-group">
-        <item-row *ngFor="let item of package.Items" [item]="item"></item-row>
-    </div>
+<h1 id="tableLabel">Rackage '{{ packageId }}' details</h1>
+<div *ngIf="packageDetails | async as package; else noPackage">
+  <strong>State: </strong
+  ><delivery-state [state]="package.State"></delivery-state>
+  <div class="list-group">
+    <item-row *ngFor="let item of package.Items" [item]="item"></item-row>
+  </div>
 </div>
 <ng-template #noPackage>
-    <div *ngIf="!isLoading" style="display:flex; flex-direction: column; align-items: center;justify-content: center; width: 100%;height: 100%; margin-top: 2em;" >
-        <img src="../../assets/missing-package.jpg" alt="This package does not exists" />
-        <p>But you can try to search for another one:</p>
-        <div class="d-flex justify-content-center">
-            <div style="width: 450px;">
-              <search-by-identifier></search-by-identifier>
-            </div>
-          </div>
+  <div
+    *ngIf="!isLoading"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      margin-top: 2em;
+    "
+  >
+    <img
+      src="../../assets/missing-package.jpg"
+      alt="This package does not exists"
+    />
+    <p>But you can try to search for another one:</p>
+    <div class="d-flex justify-content-center">
+      <div style="width: 450px;">
+        <search-by-identifier></search-by-identifier>
+      </div>
     </div>
-    <div *ngIf="isLoading" style="display:flex; align-items: center;justify-content: center; width: 100%;height: 100%; margin-top: 2em;" >
-        Loading Package Details...
-    </div>
+  </div>
+  <div
+    *ngIf="isLoading"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      margin-top: 2em;
+    "
+  >
+    Loading Package Details...
+  </div>
 </ng-template>

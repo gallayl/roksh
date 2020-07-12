@@ -1,5 +1,9 @@
 import { Component } from "@angular/core";
-import { PackageTrackingRestService, DeliveryState, Package } from "../rest-service";
+import {
+  PackageTrackingRestService,
+  DeliveryState,
+  Package,
+} from "../rest-service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { NgForm } from "@angular/forms";
@@ -14,18 +18,29 @@ import { Router } from "@angular/router";
 export class CreateMockPackageComponent {
   public deliveryStates: Observable<DeliveryState[]>;
 
-  public model: {StateId: string, Identifier: string} = {StateId: "1", Identifier: ''};
+  public model: { StateId: string; Identifier: string } = {
+    StateId: "1",
+    Identifier: "",
+  };
 
   public async onSubmit() {
-    this.api.createMockPackage({
-      StateId: parseInt(this.model.StateId,10),
-      Identifier: this.model.Identifier
-    }).subscribe((value) => {
-      this.router.navigate([PackageTrackingPaths.PackageList, value.Identifier]);
-    });
+    this.api
+      .createMockPackage({
+        StateId: parseInt(this.model.StateId, 10),
+        Identifier: this.model.Identifier,
+      })
+      .subscribe((value) => {
+        this.router.navigate([
+          PackageTrackingPaths.PackageList,
+          value.Identifier,
+        ]);
+      });
   }
 
-  constructor(private readonly api: PackageTrackingRestService, private router: Router) {
+  constructor(
+    private readonly api: PackageTrackingRestService,
+    private router: Router
+  ) {
     this.deliveryStates = this.api
       .getDeliveryStates()
       .pipe(map((st) => st.value));
