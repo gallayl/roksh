@@ -1,5 +1,7 @@
-namespace roksh.Models {
-    public interface IEntity {
+namespace roksh.Models
+{
+    public interface IEntity
+    {
         int Id { get; set; }
     }
 }

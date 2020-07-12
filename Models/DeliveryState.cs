@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace roksh.Models
 {
-    public class DeliveryState: IEntity
+    public class DeliveryState : IEntity
     {
         [Key]
         public int Id { get; set; }

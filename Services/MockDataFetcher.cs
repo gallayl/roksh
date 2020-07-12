@@ -28,13 +28,13 @@ namespace roksh.Services
         private List<Item> ParseItemsFromPage(HtmlDocument page)
         {
             return page.DocumentNode.SelectNodes("//div[@class='product-box clearfix']")
-            .Select((node,item) =>
+            .Select((node, item) =>
             {
                 var name = node.SelectSingleNode(".//h2/a").InnerText;
                 var img = node.SelectSingleNode(".//img[@src|@data-lazy-src]")?.Attributes.FirstOrDefault(attr => attr.Name == "src" || attr.Name == "data-lazy-src")?.Value;
                 var url = node.SelectSingleNode(".//a[@href][@class='image']")?.Attributes.FirstOrDefault(attr => attr.Name == "href")?.Value;
                 var description = node.SelectSingleNode(".//div[@class='description clearfix hidden-xs'][last()]")?.InnerText;
-                return new Item() { Name = name, ImageUrl=img, ItemUrl=url, Description=description };
+                return new Item() { Name = name, ImageUrl = img, ItemUrl = url, Description = description };
             }).ToList();
         }
 
@@ -43,7 +43,8 @@ namespace roksh.Services
             var page = await LoadPage(url);
             var result = ParseItemsFromPage(page);
             var nextPage = GetNextPageUrl(page);
-            if (!String.IsNullOrEmpty(nextPage)){
+            if (!String.IsNullOrEmpty(nextPage))
+            {
                 var nextValues = await this.GetItemsFromPage(nextPage);
                 result.AddRange(nextValues);
             }

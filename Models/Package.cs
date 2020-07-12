@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace roksh.Models
 {
-    public class Package: IEntity
+    public class Package : IEntity
     {
         [Key]
         public int Id { get; set; }

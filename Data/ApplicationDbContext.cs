@@ -35,7 +35,7 @@ namespace roksh.Data
 
             modelBuilder.Entity<Package>().HasOne<ApplicationUser>(p => p.Owner).WithMany(user => user.Packages);
             modelBuilder.Entity<Package>().HasOne<DeliveryState>(p => p.State);
-            modelBuilder.Entity<Package>().HasIndex(p=>p.Identifier).IsUnique();
+            modelBuilder.Entity<Package>().HasIndex(p => p.Identifier).IsUnique();
 
             modelBuilder.Entity<DeliveryState>().HasIndex(p => p.Code).IsUnique();
             SeedDeliveryStates(modelBuilder);
