@@ -7,7 +7,6 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { ApiAuthorizationModule } from "src/api-authorization/api-authorization.module";
 import { AuthorizeInterceptor } from "src/api-authorization/authorize.interceptor";
 import { PackageTrackingModule } from "src/package-tracking/package-tracking.module";
@@ -17,7 +16,6 @@ import { PackageTrackingModule } from "src/package-tracking/package-tracking.mod
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
