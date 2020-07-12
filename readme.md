@@ -59,6 +59,6 @@ Some pages (Login, Profile, etc...) are using the build-in pages provided by the
 
 ## Trade-offs
 
-- Login Form is the build-in one
+- Login Form is the built-in one, provided by Identity
 - The user account should be confirmed from the UI after registration (initial Identity behavior)
 - The **MockDataFetcher** is tightly coupled to the target site's DOM - there is no guarantee that it will work a few weeks later if the external site changes =)
