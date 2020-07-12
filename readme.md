@@ -55,3 +55,8 @@ The UI is implemented using [Angular](https://angular.io/) and is written in [Ty
 - **components** contains some reusable generic components, like displaying a delivery state, item- and package row components and a custom search bar
 
 Some pages (Login, Profile, etc...) are using the build-in pages provided by the template.
+
+## Trade-offs
+
+- Login Form is the build-in one
+- The user account should be confirmed from the UI after registration (initial Identity behavior)
