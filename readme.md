@@ -14,6 +14,7 @@
 1. Restore the NuGet Packages with `dotnet restore`
 1. Check and update your connection string in `./appsettings.json` (the `ConnectionStrings.DefaultConnection` will be used)
 1. (_optional_) Restore a database dump
+1. Build the project with `dotnet build`
 1. Execute the migration(s) and seed the DB with `dotnet ef database update`
 1. Start the app with `dotnet run`
 1. The app will be available at https://localhost:5001/
