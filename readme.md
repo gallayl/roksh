@@ -55,7 +55,7 @@ The UI is implemented using [Angular](https://angular.io/) and is written in [Ty
 - **create-mock-package** is a form for creating a mock package for the current user
 - **components** contains some reusable generic components, like displaying a delivery state, item- and package row components and a custom search bar
 
-Some pages (Login, Profile, etc...) are using the build-in pages provided by the template.
+Some pages (Login, Profile, etc...) are using the built-in pages from Identity.
 
 ## Trade-offs
 
