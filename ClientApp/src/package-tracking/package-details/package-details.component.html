@@ -1,4 +1,4 @@
-<h1 id="tableLabel">Rackage '{{ packageId }}' details</h1>
+<h1 id="tableLabel">Package '{{ packageId }}' details</h1>
 <div *ngIf="packageDetails | async as package; else noPackage">
   <strong>State: </strong
   ><delivery-state [state]="package.State"></delivery-state>
@@ -8,7 +8,7 @@
 </div>
 <ng-template #noPackage>
   <div
-    *ngIf="!isLoading"
+    *ngIf="!(isLoading | async)"
     style="
       display: flex;
       flex-direction: column;
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div
-    *ngIf="isLoading"
+    *ngIf="isLoading | async"
     style="
       display: flex;
       align-items: center;

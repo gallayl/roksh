@@ -12,6 +12,8 @@ export class MyPackagesComponent {
   term = new BehaviorSubject("");
   packages = new BehaviorSubject<Package[]>([]);
 
+  isLoading = new BehaviorSubject(true);
+
   onTermChanged(ev: Event) {
     this.term.next((ev.target as HTMLInputElement).value);
   }
@@ -20,8 +22,10 @@ export class MyPackagesComponent {
 
   ngOnInit() {
     this.term.pipe(debounce(() => interval(1000))).subscribe((term) => {
+      this.isLoading.next(true);
       this.api.getPackageList(term).subscribe((v) => {
         this.packages.next(v);
+        this.isLoading.next(false);
       });
     });
   }

@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PackageTrackingRestService, Package } from "../rest-service";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "package-details",
   templateUrl: "./package-details.component.html",
 })
 export class PackageDetailsComponent {
-  public isLoading = true;
+  public isLoading = new BehaviorSubject(true);
 
   public packageDetails: Observable<Package>;
 
@@ -21,10 +21,11 @@ export class PackageDetailsComponent {
 
   ngOnInit() {
     this.route.params.subscribe((param) => {
+      this.isLoading.next(true);
       this.packageId = param.identifier;
       this.packageDetails = this.api.getPackageDetails(this.packageId);
-      this.packageDetails.subscribe((v) => {
-        this.isLoading = false;
+      this.packageDetails.subscribe(() => {
+        this.isLoading.next(false);
       });
     });
   }

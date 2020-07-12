@@ -17,19 +17,19 @@
 <p>It includes the following features</p>
 <ul>
   <li>
-    <strong>Search package</strong>. You can type in your package identifier to
-    get detailed info
-  </li>
-  <li>
-    <strong>Create Mock package</strong>. Click
+    <strong>Create Mock packages</strong>. Click
     <a [routerLink]="['/package-tracking/create-mock-package']">here</a> to
-    create a Mock Package. Only for debugging purposes 😉
+    create a Mock Package. It will create you a package entry with a tons of
+    cool phones. Only for debugging purposes 😉
+  </li>
+  <li><strong>List your packages</strong>. You can even filter with a code</li>
+  <li>
+    <strong>Search</strong> a package with its <code>unique identifier</code>
+    <br />
+    <div class="d-flex justify-content-center">
+      <div style="width: 450px;">
+        <search-by-identifier></search-by-identifier>
+      </div>
+    </div>
   </li>
 </ul>
-<hr />
-<p>You can search a package with its <strong>unique identifier</strong>.</p>
-<div class="d-flex justify-content-center">
-  <div style="width: 450px;">
-    <search-by-identifier></search-by-identifier>
-  </div>
-</div>

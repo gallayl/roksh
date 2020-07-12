@@ -19,10 +19,27 @@
       />
     </div>
   </div>
-  <div>
+  <div *ngIf="isLoading | async">
+    Loading Packages...
+  </div>
+  <div *ngIf="(packages | async).length > 0 && !(isLoading | async)">
     <package-row
       *ngFor="let package of packages | async"
       [package]="package"
     ></package-row>
+  </div>
+  <div
+    *ngIf="(packages | async).length === 0 && !(isLoading | async)"
+    class="d-flex align-items-center justify-content-center flex-column"
+  >
+    <img src="../../assets//nopackage.gif" alt="no-packages" />
+    <p *ngIf="(term | async).length === 0">
+      You can create your first one
+      <a [routerLink]="['/package-tracking/create-mock-package']">here</a>.
+    </p>
+    <p *ngIf="(term | async).length > 0">
+      Check your filter or create one new
+      <a [routerLink]="['/package-tracking/create-mock-package']">here</a>.
+    </p>
   </div>
 </div>
